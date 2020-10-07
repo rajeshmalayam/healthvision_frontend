@@ -1,0 +1,89 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="colorlib.com">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet" />
+
+
+    <script>
+        function passValue(){
+          var cityName = document.getElementById("search").value;
+          localStorage.setItem("city", cityName);
+
+          var radio_ids = ["covid", "heart", "kidneys", "eyes", "dental", "skin"];
+          for(i=0;i<radio_ids.length;i++){
+            if(document.getElementById(radio_ids[i]).checked){
+                localStorage.setItem("category", radio_ids[i]);
+                break;
+            }
+          
+          }
+
+          return false;
+        }
+    </script>
+
+  </head>
+  <body>
+    <div class="s008">
+      <form>
+        <div class="inner-form">
+
+          <div class="basic-search">
+            <div class="input-field">
+              <input id="search" type="text" placeholder="Type City name..." />
+            </div>
+          </div>
+
+          <div class="advance-search">
+            <span class="desc">Select Category</span>
+            <div class="row">
+              
+                <input type="radio" id="covid" name="category" value="covid">
+                <label for="covid" style="color: white;">Covid</label><br>
+             
+              
+                <input type="radio" id="heart" name="category" value="heart">
+                <label for="heart" style="color: white;">Heart</label><br>
+              
+             
+                <input type="radio" id="kidneys" name="category" value="kidneys">
+                <label for="kidneys" style="color: white;">Kidneys</label><br>
+              
+            </div>
+            <div class="row second">
+             
+                <input type="radio" id="eyes" name="category" value="eyes">
+                <label for="eyes" style="color: white;">Eyes</label><br>
+             
+              
+                <input type="radio" id="skin" name="category" value="skin">
+                <label for="skin" style="color: white;">Skin</label><br>
+             
+                
+                  <input type="radio" id="dental" name="category" value="dental">
+                  <label for="dental" style="color: white;">Dental</label><br>
+                
+             
+            </div>
+            <div class="row third">
+              <div class="input-field">
+                
+                <div class="group-btn">
+                  <button class="btn-delete" id="delete">Reset</button>
+                  <button class="btn-search" ><a href="hospitals_list.html" onclick="passValue();" style="color: white;text-decoration: none;">Search</a></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+
+    
+  </body>
+</html>

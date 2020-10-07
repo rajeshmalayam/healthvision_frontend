@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/owl.carousel.min.css">
+<link rel="stylesheet" href="css/magnific-popup.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/themify-icons.css">
+<link rel="stylesheet" href="css/nice-select.css">
+<link rel="stylesheet" href="css/flaticon.css">
+<link rel="stylesheet" href="css/gijgo.css">
+<link rel="stylesheet" href="css/animate.css">
+<link rel="stylesheet" href="css/slicknav.css">
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+form {
+  font-family: Arial;
+  background: "img/blood.jpg";
+}
+
+* {
+  box-sizing: border-box;
+}
+
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: #0b7dda;
+}
+
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+</style>
+
+<script>
+    function getList(){
+    var city =  document.getElementById("city_field").value;
+    var bloodgroup = document.getElementById("bloodgroup_field").value;
+        console.log(city);
+        console.log(bloodgroup);
+    var request = new XMLHttpRequest()
+
+    request.open('GET', 'http://localhost:3000/getHospitalsList', true)
+    request.onload = function () {
+
+     var data = JSON.parse(this.response);
+     var f_data = data.list;
+
+        var onediv = document.getElementById("oned");
+        var element1 = document.createElement("h4");
+        element1.setAttribute('id', "city");
+        element1.appendChild(document.createTextNode(city));
+        onediv.appendChild(element1);
+        
+     if (request.status >= 200 && request.status < 400) {
+        for(i=0;i<f_data.length;i++){
+         var blood_group = f_data[i].bloodgroup;
+         var cityname = f_data[i].city;
+
+
+
+        //  if(city.localeCompare(cityname) == 0  &&  blood_group.includes(bloodgroup) == true){
+        // var onediv = document.getElementById("oned");
+        // var element1 = document.createElement("h4");
+        // element1.setAttribute('id', f_data[i].hospitalname);
+        // element1.appendChild(document.createTextNode(f_data[i].hospitalname));
+        // onediv.appendChild(element1);
+
+        // var twodiv = document.getElementById("twod");
+        // var element2 = document.createElement("h4");
+        // element2.setAttribute('id', type);
+        // element2.appendChild(document.createTextNode(type));
+        // twodiv.appendChild(element2);
+
+        // var threediv = document.getElementById("threed");
+        // var element3 = document.createElement("h4");
+        // element3.setAttribute('id', cityname);
+        // element3.appendChild(document.createTextNode(cityname));
+        // threediv.appendChild(element3);
+
+        // var fourdiv = document.getElementById("fourd");
+        // var afour = document.getElementById("afour");
+        // var element4 = document.createElement('h4');
+        // element4.setAttribute('id', "link");
+        // element4.appendChild(document.createTextNode("link"));
+        // afour.appendChild(element4);
+        //  }
+
+       }
+     } else {
+       console.log('error')
+     }
+}
+
+request.send()
+    }
+</script>
+
+
+</head>
+<body>
+
+
+<form class="example"  style="margin:auto;max-width:400px;margin-top: 100px;">
+    <input type="text" placeholder="Enter City Name..." id="city_field" style="margin-bottom: 20px;">
+    
+  <input type="text" placeholder="Enter Blood Group..." id="bloodgroup_field" style="margin-bottom: 20px;">
+
+  <button type="submit" onclick="getList();">Search</button>
+  
+</form>
+
+ <!-- expert_doctors_area_start -->
+ <div class="expert_doctors_area doctor_page">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-lg-3">
+                <div class="single_expert mb-40">
+                    
+                    <div class="experts_name text-center" style="background-color: black;">
+                        <h3 style="color: white;">Hospital Name</h3>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="single_expert mb-40">
+                    
+                    <div class="experts_name text-center" style="background-color: black;">
+                        <h3 style="color: white;">Category</h3>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="single_expert mb-40">
+                   
+                    <div class="experts_name text-center" style="background-color: black;">
+                        <h3 style="color: white;">City</h3>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="single_expert mb-40">
+                    
+                    <div class="experts_name text-center" style="background-color: black;">
+                        <h3 style="color: white;">Check Hospital</h3>
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="single_expert mb-40">
+                    
+                    <div class="text-center" style="margin-bottom: 50px;" id="oned">
+                        <h4 id="one"></h4>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="single_expert mb-40">
+                    
+                    <div class="text-center" style="margin-bottom: 50px;" id="twod">
+                        <h4 id="two"></h4>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="single_expert mb-40">
+                    
+                    <div class=" text-center" style="margin-bottom: 50px;" id="threed">
+                        <h4 id="three"></h4>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="single_expert mb-40">
+                    
+                    <div class="text-center" style="margin-bottom: 50px;" id="fourd">
+                        <a href="index.html" id="afour"><h4 id="four"></h4></a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- expert_doctors_area_end -->
+
+
+
+
+
+</body>
+</html> 

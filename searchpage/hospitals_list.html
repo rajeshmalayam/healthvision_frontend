@@ -1,0 +1,187 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+       <!-- CSS here -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../css/magnific-popup.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/themify-icons.css">
+    <link rel="stylesheet" href="../css/nice-select.css">
+    <link rel="stylesheet" href="../css/flaticon.css">
+    <link rel="stylesheet" href="../css/gijgo.css">
+    <link rel="stylesheet" href="../css/animate.css">
+    <link rel="stylesheet" href="../css/slicknav.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+  </head>
+
+  <body>
+
+    
+     <!-- expert_doctors_area_start -->
+     <div class="expert_doctors_area doctor_page">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-3">
+                    <div class="single_expert mb-40">
+                        <div class="expert_thumb">
+                            <img src="img/experts/1.png" alt="">
+                        </div>
+                        <div class="experts_name text-center" style="background-color: black;">
+                            <h3 style="color: white;">Hospital Name</h3>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="single_expert mb-40">
+                        <div class="expert_thumb">
+                            <img src="img/experts/2.png" alt="">
+                        </div>
+                        <div class="experts_name text-center" style="background-color: black;">
+                            <h3 style="color: white;">Category</h3>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="single_expert mb-40">
+                        <div class="expert_thumb">
+                            <img src="img/experts/3.png" alt="">
+                        </div>
+                        <div class="experts_name text-center" style="background-color: black;">
+                            <h3 style="color: white;">City</h3>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="single_expert mb-40">
+                        <div class="expert_thumb">
+                            <img src="img/experts/4.png" alt="">
+                        </div>
+                        <div class="experts_name text-center" style="background-color: black;">
+                            <h3 style="color: white;">Check Hospital</h3>
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="single_expert mb-40">
+                        <div class="expert_thumb">
+                            <img src="img/experts/6.png" alt="">
+                        </div>
+                        <div class="text-center" style="margin-bottom: 50px;" id="oned">
+                            <h4 id="one"></h4>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="single_expert mb-40">
+                        <div class="expert_thumb">
+                            <img src="img/experts/7.png" alt="">
+                        </div>
+                        <div class="text-center" style="margin-bottom: 50px;" id="twod">
+                            <h4 id="two"></h4>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="single_expert mb-40">
+                        <div class="expert_thumb">
+                            <img src="img/experts/8.png" alt="">
+                        </div>
+                        <div class=" text-center" style="margin-bottom: 50px;" id="threed">
+                            <h4 id="three"></h4>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="single_expert mb-40">
+                        <div class="expert_thumb">
+                            <img src="img/experts/9.png" alt="">
+                        </div>
+                        <div class="text-center" style="margin-bottom: 50px;" id="fourd">
+                            <a href="../index.html" id="afour"><h4 id="four"></h4></a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- expert_doctors_area_end -->
+
+
+    
+
+
+
+    <script>
+        var city = localStorage.getItem("city").toLowerCase();  
+        var category = localStorage.getItem("category").toLowerCase();
+
+        var request = new XMLHttpRequest()
+
+        request.open('GET', 'http://localhost:3000/getHospitalsList', true)
+        request.onload = function () {
+  
+         var data = JSON.parse(this.response);
+         var f_data = data.list;
+
+            
+         if (request.status >= 200 && request.status < 400) {
+            for(i=0;i<f_data.length;i++){
+             var type = f_data[i].hospitaltype;
+             var cityname = f_data[i].city;
+
+
+
+             if(city.localeCompare(cityname) == 0  &&  type.includes(category) == true){
+            var onediv = document.getElementById("oned");
+            var element1 = document.createElement("h4");
+            element1.setAttribute('id', f_data[i].hospitalname);
+            element1.appendChild(document.createTextNode(f_data[i].hospitalname));
+            onediv.appendChild(element1);
+
+            var twodiv = document.getElementById("twod");
+            var element2 = document.createElement("h4");
+            element2.setAttribute('id', type);
+            element2.appendChild(document.createTextNode(type));
+            twodiv.appendChild(element2);
+
+            var threediv = document.getElementById("threed");
+            var element3 = document.createElement("h4");
+            element3.setAttribute('id', cityname);
+            element3.appendChild(document.createTextNode(cityname));
+            threediv.appendChild(element3);
+
+            var fourdiv = document.getElementById("fourd");
+            var afour = document.getElementById("afour");
+            var element4 = document.createElement('h4');
+            element4.setAttribute('id', "link");
+            element4.appendChild(document.createTextNode("link"));
+            afour.appendChild(element4);
+             }
+
+           }
+         } else {
+           console.log('error')
+         }
+}
+
+request.send()
+    </script>
+
+  </body>
+
+</html>
